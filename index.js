@@ -1,13 +1,12 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { inicializaModelo } from "./modelo.js";
 import { fazerPergunta } from "./pergunta.js";
 //const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Acesse sua chave de API como uma variável de ambiente (consulte "Configurar sua chave de API" acima)
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = await inicializaModelo("gemini-1.0-pro")
 
 async function run() {
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
 
     // Definindo um prompt objetivo.   
     const prompt = await fazerPergunta("Me fale sobre o destino que deseja conhecer: ")
